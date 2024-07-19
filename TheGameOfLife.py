@@ -9,6 +9,7 @@ class GameOfLife(object):
         :param x_dim: The number of columns in the grid
         :param y_dim: The number of rows in the grid
         """
+
         self.x = x_dim
         self.y = y_dim
         self.life_grid = [[0 for _ in range(self.x)] for _ in range(self.y)]
@@ -19,19 +20,19 @@ class GameOfLife(object):
         :return:
         current state of the grid.
         """
+
         return self.life_grid
 
     def print_grid(self):
         """
         Print the grid in readable format
-
         """
 
         display_grid = self.get_grid()
         for i in range(self.y):
             for j in range(self.x):
                 print(display_grid[i][j], '|', end=' ')
-            print('\n- - - - - - - - - - - - - - - - - - - -')
+            print('\n')
 
     def populate_grid(self, coord):
         """
@@ -51,8 +52,8 @@ class GameOfLife(object):
         Update the grid by one step according to the rules of the Game of Life.
         :return:
         Updated grid
-
         """
+
         sum_grid = [[0 for _ in range(self.x)] for _ in range(self.y)]
         sum_of_live_cell = 0
 
@@ -68,7 +69,6 @@ class GameOfLife(object):
                                             sum_of_live_cell += 1
                 sum_grid[i][j] = sum_of_live_cell
                 sum_of_live_cell = 0
-        # print(sum_grid)
 
         for i in range(self.y):
             for j in range(self.x):
@@ -104,6 +104,7 @@ class GameOfLife(object):
         :return:
         none
         """
+
         x = []
         y = []
         colors = []
@@ -129,18 +130,11 @@ class GameOfLife(object):
         plt.show()
 
 
-grid = GameOfLife(30, 30)
-# grid_2 = grid.get_grid()
-grid.print_grid()
-print()
-grid.populate_grid([(14, 16), (15, 16), (16, 16), (18, 16), (19, 16), (20, 16),
-(16, 14), (16, 15), (16, 17), (16, 18),
-(18, 14), (18, 15), (18, 17), (18, 18),
-(14, 18), (15, 18), (16, 18), (18, 18), (19, 18), (20, 18)])
-grid.draw_grid()
-grid.print_grid()
-print()
-grid.make_step()
-grid.make_n_steps(6)
-grid.print_grid()
-grid.draw_grid()
+# grid = GameOfLife(30, 30)
+# grid.populate_grid([(14, 16), (15, 16), (16, 16), (18, 16), (19, 16), (20, 16),
+# (16, 14), (16, 15), (16, 17), (16, 18),
+# (18, 14), (18, 15), (18, 17), (18, 18),
+# (14, 18), (15, 18), (16, 18), (18, 18), (19, 18), (20, 18)])
+# grid.make_step()
+# grid.make_n_steps(6)
+# grid.draw_grid()
