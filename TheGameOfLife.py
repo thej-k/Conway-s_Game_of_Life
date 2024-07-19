@@ -4,17 +4,29 @@ import matplotlib.pyplot as plt
 class GameOfLife(object):
 
     def __init__(self, x_dim, y_dim):
-        # Initialize a 2D list with dimensions x_dim by y_dim filled with zeros.
+        """
+        Initializes a new instance of the GameOfLife class with a grid of given dimensions.
+        :param x_dim: The number of columns in the grid
+        :param y_dim: The number of rows in the grid
+        """
         self.x = x_dim
         self.y = y_dim
         self.life_grid = [[0 for _ in range(self.x)] for _ in range(self.y)]
 
     def get_grid(self):
-        # Implement a getter method for your grid.
+        """
+        gets the current state of the grid.
+        :return:
+        current state of the grid.
+        """
         return self.life_grid
 
     def print_grid(self):
-        # Implement a method to print out your grid in a human-readable format.
+        """
+        Print the grid in readable format
+
+        """
+
         display_grid = self.get_grid()
         for i in range(self.y):
             for j in range(self.x):
@@ -22,15 +34,25 @@ class GameOfLife(object):
             print('\n- - - - - - - - - - - - - - - - - - - -')
 
     def populate_grid(self, coord):
+        """
+        Populates the game grid with live cells at specified coordinates
+        :param coord:
+        A list of tuples. Each tuple represents the (x,y) coordinates of a live cell.
+        :return:
+        The updated grid with live cells.
+        """
 
-        # Given a list of 2D coordinates (represented as tuples/lists with 2 elements each),
-        # set the corresponding elements in your grid to 1.
         for cd in coord:
             self.life_grid[cd[0]][cd[1]] = 1
         self.print_grid()
 
     def make_step(self):
-        # Implement the logic to update the game state according to the rules of Conway's Game of Life.
+        """
+        Update the grid by one step according to the rules of the Game of Life.
+        :return:
+        Updated grid
+
+        """
         sum_grid = [[0 for _ in range(self.x)] for _ in range(self.y)]
         sum_of_live_cell = 0
 
@@ -64,14 +86,24 @@ class GameOfLife(object):
         return self.life_grid
 
     def make_n_steps(self, n):
-        # Implement a method that applies the make_step method n times.
+        """
+        Advance the game by specified number of steps
+        :param n: Number of steps
+        :return:
+        Updated grid after n steps
+        """
+
         for i in range(n):
             self.life_grid = self.make_step()
 
         return self.life_grid
 
     def draw_grid(self):
-        # Draw the current state of the grid.
+        """
+        Visualizes the current state of the game grid using a scatter plot.
+        :return:
+        none
+        """
         x = []
         y = []
         colors = []
@@ -97,13 +129,18 @@ class GameOfLife(object):
         plt.show()
 
 
-grid = GameOfLife(6, 6)
+grid = GameOfLife(30, 30)
 # grid_2 = grid.get_grid()
 grid.print_grid()
 print()
-grid.populate_grid([(1, 1), (1, 3), (2, 1), (2, 3), (3, 2), (4, 2)])
+grid.populate_grid([(14, 16), (15, 16), (16, 16), (18, 16), (19, 16), (20, 16),
+(16, 14), (16, 15), (16, 17), (16, 18),
+(18, 14), (18, 15), (18, 17), (18, 18),
+(14, 18), (15, 18), (16, 18), (18, 18), (19, 18), (20, 18)])
+grid.draw_grid()
 grid.print_grid()
 print()
-grid.make_n_steps(3)
+grid.make_step()
+grid.make_n_steps(6)
 grid.print_grid()
 grid.draw_grid()
